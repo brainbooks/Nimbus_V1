@@ -1,0 +1,458 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-folder-1: var(--folder-1);
+  --color-folder-2: var(--folder-2);
+  --color-folder-3: var(--folder-3);
+  --color-folder-4: var(--folder-4);
+  --color-folder-5: var(--folder-5);
+  --color-folder-6: var(--folder-6);
+}
+
+:root {
+  color-scheme: dark;
+  --radius: 0.75rem;
+  --background: oklch(0.18 0.012 260);
+  --foreground: oklch(0.96 0.005 260);
+  --surface: oklch(0.215 0.013 260);
+  --surface-2: oklch(0.25 0.014 260);
+  --card: oklch(0.225 0.013 260);
+  --card-foreground: oklch(0.96 0.005 260);
+  --popover: oklch(0.235 0.014 260);
+  --popover-foreground: oklch(0.96 0.005 260);
+  --primary: oklch(0.78 0.15 178);
+  --primary-foreground: oklch(0.18 0.03 200);
+  --muted: oklch(0.27 0.014 260);
+  --muted-foreground: oklch(0.7 0.015 260);
+  --accent: oklch(0.3 0.02 260);
+  --accent-foreground: oklch(0.97 0.005 260);
+  --border: oklch(0.31 0.014 260);
+  --destructive: oklch(0.63 0.2 22);
+  --success: oklch(0.75 0.16 155);
+  --warning: oklch(0.8 0.15 80);
+  --folder-1: oklch(0.75 0.16 178);
+  --folder-2: oklch(0.7 0.17 265);
+  --folder-3: oklch(0.8 0.15 80);
+  --folder-4: oklch(0.72 0.18 340);
+  --folder-5: oklch(0.75 0.16 155);
+  --folder-6: oklch(0.72 0.16 35);
+}
+
+/* ==================================================
+   NIMBUS DESIGN TOKENS & GLOBAL STYLES
+   ================================================== */
+
+/* Custom scrollbar */
+* {
+  box-sizing: border-box;
+  border-color: var(--border);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 100px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* Base styles */
+html {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+}
+
+/* ==================================================
+   ANIMATION KEYFRAMES
+   ================================================== */
+
+@keyframes nimbus-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes nimbus-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes nimbus-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes nimbus-pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+  }
+}
+
+@keyframes nimbus-bar-fill {
+  from {
+    width: 0%;
+  }
+}
+
+@keyframes nimbus-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ==================================================
+   UTILITY CLASSES
+   ================================================== */
+
+.nimbus-fade-in {
+  animation: nimbus-fade-in 0.4s ease-out both;
+}
+
+.nimbus-slide-up {
+  animation: nimbus-slide-up 0.5s ease-out both;
+}
+
+.nimbus-scale-in {
+  animation: nimbus-scale-in 0.3s ease-out both;
+}
+
+.nimbus-pulse-glow {
+  animation: nimbus-pulse-glow 2.5s ease-in-out infinite;
+}
+
+.nimbus-bar-fill {
+  animation: nimbus-bar-fill 1s ease-out both;
+}
+
+/* Staggered animation delays for grid items */
+.nimbus-stagger-1 { animation-delay: 0.05s; }
+.nimbus-stagger-2 { animation-delay: 0.1s; }
+.nimbus-stagger-3 { animation-delay: 0.15s; }
+.nimbus-stagger-4 { animation-delay: 0.2s; }
+.nimbus-stagger-5 { animation-delay: 0.25s; }
+.nimbus-stagger-6 { animation-delay: 0.3s; }
+.nimbus-stagger-7 { animation-delay: 0.35s; }
+.nimbus-stagger-8 { animation-delay: 0.4s; }
+
+/* Glass effect */
+.nimbus-glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.nimbus-glass-strong {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Horizontal scrollbar hide for carousel */
+.nimbus-hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.nimbus-hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Smooth scroll behavior */
+.nimbus-smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Card hover glow */
+.nimbus-card-glow {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.nimbus-card-glow:hover {
+  box-shadow: 0 0 0 1px rgba(0, 212, 255, 0.12), 0 8px 32px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Toggle switch */
+.nimbus-toggle {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.nimbus-toggle.active {
+  background: #00d4ff;
+}
+
+.nimbus-toggle::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.nimbus-toggle.active::after {
+  transform: translateX(20px);
+}
+
+/* ==================================================
+   CURSOR POINTER ON INTERACTIVE CARDS
+   ================================================== */
+
+.nimbus-card-glow {
+  cursor: pointer;
+}
+
+/* ==================================================
+   MOBILE SIDEBAR OVERLAY
+   ================================================== */
+
+.nimbus-sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.nimbus-sidebar-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ==================================================
+   SETTINGS PANEL SLIDE-IN
+   ================================================== */
+
+@keyframes nimbus-slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes nimbus-slide-out-right {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.nimbus-settings-panel {
+  animation: nimbus-slide-in-right 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.nimbus-settings-panel.closing {
+  animation: nimbus-slide-out-right 0.25s ease-in both;
+}
+
+.nimbus-settings-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: nimbus-fade-in 0.2s ease-out both;
+}
+
+/* ==================================================
+   FILE PREVIEW MODAL
+   ================================================== */
+
+@keyframes nimbus-preview-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.nimbus-preview-modal {
+  animation: nimbus-preview-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.nimbus-preview-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(5, 5, 10, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  animation: nimbus-fade-in 0.2s ease-out both;
+}
+
+/* ==================================================
+   TAG MANAGER POPOVER
+   ================================================== */
+
+@keyframes nimbus-popover-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.nimbus-popover {
+  animation: nimbus-popover-in 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ==================================================
+   ACCENT COLOR SYSTEM
+   ================================================== */
+
+:root {
+  --accent-hue: 187;
+  --accent-sat: 100%;
+  --accent-primary: hsl(var(--accent-hue), var(--accent-sat), 50%);
+  --accent-primary-dim: hsl(var(--accent-hue), var(--accent-sat), 35%);
+  --accent-glow: hsla(var(--accent-hue), var(--accent-sat), 50%, 0.15);
+  --accent-glow-strong: hsla(var(--accent-hue), var(--accent-sat), 50%, 0.3);
+}
+
+/* ==================================================
+   RESPONSIVE BREAKPOINTS
+   ================================================== */
+
+@media (max-width: 768px) {
+  .nimbus-hide-mobile {
+    display: none !important;
+  }
+
+  .nimbus-mobile-full {
+    width: 100% !important;
+    margin-left: 0 !important;
+    left: 0 !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .nimbus-hide-desktop {
+    display: none !important;
+  }
+}
+
+/* ==================================================
+   UPLOAD FAB BUTTON
+   ================================================== */
+
+@keyframes nimbus-fab-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 hsla(var(--accent-hue), var(--accent-sat), 50%, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 12px hsla(var(--accent-hue), var(--accent-sat), 50%, 0);
+  }
+}
+
+.nimbus-fab {
+  animation: nimbus-fab-pulse 2.5s ease-in-out infinite;
+}
+
+.nimbus-fab:hover {
+  animation: none;
+}
+
+/* ==================================================
+   AUDIO PLAYER WAVEFORM
+   ================================================== */
+
+@keyframes nimbus-wave {
+  0%, 100% { height: 20%; }
+  50% { height: 80%; }
+}
+
+.nimbus-waveform-bar {
+  animation: nimbus-wave 1.2s ease-in-out infinite;
+}
